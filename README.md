@@ -1,5 +1,9 @@
 # agent-gantt
 
+<p align="center">
+  <img src="gantt-mcp-logo.png" alt="agent-gantt logo" width="260">
+</p>
+
 agent-gantt is a dependency-free Model Context Protocol server for maintaining
 small project plans that AI agents can render as Gantt charts. State lives in
 SQLite and the server communicates over MCP stdio.
