@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agent-gantt-mcp"
+version = "2.0.0"
+description = "A lightweight project planning MCP server"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { file = "LICENSE" }
+
+[project.scripts]
+agent-gantt = "agent_gantt:run"
+
+[tool.setuptools]
+py-modules = ["server", "agent_gantt"]

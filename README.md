@@ -19,27 +19,17 @@ SQLite and the server communicates over MCP stdio.
 
 ## Install
 
-Download or clone a release, then run its installer as your normal user:
-    git clone https://github.com/TobiasCoding/agent-gantt-mcp.git
-    cd agent-gantt-mcp
-    ./install.sh
+Requires Python 3.9+ and [`uv`](https://docs.astral.sh/uv/). Register the package directly from GitHub with the MCP client’s normal stdio configuration. The first launch installs the package in an isolated environment; no repository checkout or custom installer is needed.
 
-It installs the launcher and server into ~/.local/share/agent-gantt (or
-$XDG_DATA_HOME/agent-gantt) and prints the registration commands. Use another
-absolute location if needed:
+```sh
+# Claude Code
+claude mcp add -s user agent-gantt -- uvx --from git+https://github.com/TobiasCoding/agent-gantt-mcp.git agent-gantt
 
-    ./install.sh --prefix "$HOME/.local/share/agent-gantt"
+# Codex CLI
+codex mcp add agent-gantt -- uvx --from git+https://github.com/TobiasCoding/agent-gantt-mcp.git agent-gantt
+```
 
-Register the installed launcher with your MCP client:
-
-    codex mcp add agent-gantt -- ~/.local/share/agent-gantt/run.sh
-    claude mcp add -s user agent-gantt -- ~/.local/share/agent-gantt/run.sh
-
-To store data in a specific durable/shared path, set AGENT_GANTT_DB in the MCP
-client configuration:
-
-    codex mcp add agent-gantt --env AGENT_GANTT_DB=/srv/agent-gantt/projects.sqlite3 -- ~/.local/share/agent-gantt/run.sh
-    claude mcp add -s user agent-gantt -e AGENT_GANTT_DB=/srv/agent-gantt/projects.sqlite3 -- ~/.local/share/agent-gantt/run.sh
+The default database is `~/.local/state/agent-gantt/projects.sqlite3`. To share a database across clients, add `AGENT_GANTT_DB` to that server’s MCP `env` configuration (or use the client CLI’s environment option).
 
 ## Tools
 
